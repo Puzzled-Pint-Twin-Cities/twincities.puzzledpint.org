@@ -218,11 +218,11 @@ hr {
 50% (default): True circle
 */
 .avatar {
-  width: 128px;
+  /* width: 128px; */
   height: 128px;
-  object-fit: cover;
-  background-position: center;
-  border-radius: 50%;
+  /* object-fit: cover; */
+  /* background-position: center; */
+  /* border-radius: 50%; */
 }
 
 /* design based on this codepen - https://codepen.io/borntofrappe/pen/ZZaaOe */
