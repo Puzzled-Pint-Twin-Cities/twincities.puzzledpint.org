@@ -7,10 +7,10 @@ layout: default
     <div class="row">
       <div class="column" style="margin-top: 10%; margin-bottom: 10%">
 
-        <a href="/"><img src="/images/favicon.png" class="avatar" alt="Puzzled Pint Bangalore Logo" /></a>
+        <a href="/"><img src="/images/favicon.svg" class="avatar" alt="Puzzled Pint Twin Cities Logo" /></a>
 
         <h2 role="heading">{{page.event.date | date:"%B %Y"}} Teams</h2>
-        <h4><a style="color: #76316e" href='https://puzzledpint.com/events/{{page.event.date|date:"%B-%Y" | downcase}}/'>{{page.event.theme}}</a></h4>
+        <h4><a style="color: #76316e" href='https://puzzledpint.org/events/{{page.event.date|date:"%B-%Y" | downcase}}/'>{{page.event.theme}}</a></h4>
         <img style="border-radius: 1em" width="100%" src="/images/events/{{page.event.date}}.jpg">
         {% assign rows = site.data.results | where: "Date", page.event.date %}
         {% if rows.size > 0 or page.event.sheetURL %}

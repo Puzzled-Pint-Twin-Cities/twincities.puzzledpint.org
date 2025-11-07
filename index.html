@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Puzzled Pint Bangalore
+title: Puzzled Pint Twin Cities
 ---
 <div class="container">
     <div class="row">
       <div class="column" style="margin-top: 10%">
-        <img src="images/favicon.png" class="avatar" alt="">
+        <img src="images/favicon.svg" class="avatar" alt="">
         <h1 role="heading">{{site.title}}</h1>
         <p>{{site.description}}</p>
 
@@ -14,7 +14,7 @@ title: Puzzled Pint Bangalore
         <p>{% assign lastDate = currentEvent.date | date:"%Y-%m-%d" %} {% assign today = site.time | date:"%Y-%m-%d" %}</p>
         <!-- If the date is in the future, then show registration link -->
         {% if lastDate >= today %}
-        <a class="button button-default" href='https://www.district.in/puzzled-pint-bangalore-{{"now"|date:"%B-%Y" | downcase }}/event' target="_blank" rel="noopener" role="button"><img class="icon" src="images/icons/generic-calendar.svg" alt="Registration Link for Next Puzzled Pint">Register for {{"now" | date:"%B %Y"}}</a><br>
+        <a class="button button-default" href='https://puzzledpint.org/events/{{ currentEvent.date | date:"%B-%Y" | downcase }}/' target="_blank" rel="noopener" role="button"><img class="icon" src="images/icons/generic-calendar.svg" alt="Registration Link for Next Puzzled Pint">Register for {{"now" | date:"%B %Y"}}</a><br>
         {% endif %}
 
         <!-- TODO: Need better label -->

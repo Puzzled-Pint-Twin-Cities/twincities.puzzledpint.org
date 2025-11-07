@@ -1,8 +1,8 @@
-- url: https://puzzledpint.com/puzzles/
+- url: https://puzzledpint.org/puzzles/
   icon: generic-website
   text: Puzzle Archives
   button: default
-- url: https://puzzledpint.com/resources/
+- url: https://puzzledpint.org/resources/
   icon: read-cv
   text: Puzzle Solving Resources
   button: amazon
