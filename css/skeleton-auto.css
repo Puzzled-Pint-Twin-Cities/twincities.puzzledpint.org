@@ -137,7 +137,7 @@ a:focus {
 
 /* Link Color Dark Theme */
 @media (prefers-color-scheme: dark) {
-  a {
+a {
     color: #eee;
 }
 a:hover {
@@ -146,6 +146,9 @@ a:hover {
 a:focus {
   outline: #7AB8FF solid 2px;
   border-radius: 2px;
+}
+.avatar { 
+  filter: brightness(0) invert(1);
 }
 }
 
