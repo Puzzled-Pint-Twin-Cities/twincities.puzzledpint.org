@@ -94,7 +94,6 @@ body {
   line-height: 24px;
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-
 }
 
 /* Typography
@@ -200,9 +199,10 @@ hr {
 50% (default): True circle
 */
 .avatar {
-  width: 128px;
+  /* width: 128px; */
   height: 128px;
-  object-fit: cover;
-  background-position: center;
-  border-radius: 50%;
+  filter: brightness(0) invert(1);
+  /* object-fit: cover; */
+  /* background-position: center; */
+  /* border-radius: 50%; */
 }
