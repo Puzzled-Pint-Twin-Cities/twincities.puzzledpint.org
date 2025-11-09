@@ -1,0 +1,65 @@
+# Complete workflow example for GitHub Pages
+name: Update Data and Deploy
+
+on:
+  schedule:
+    # Run on the 1st of each month at 10 AM UTC (now triggers the script directly)
+    - cron: '0 10 1 * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Install jq for JSON parsing
+      run: sudo apt-get update && sudo apt-get install -y jq
+    
+    - name: Execute Google Apps Script and download data
+      env:
+        GAS_WEB_APP_URL: ${{ secrets.GAS_WEB_APP_URL }}
+        GAS_AUTH_TOKEN: ${{ secrets.GAS_AUTH_TOKEN }}
+      run: |
+        echo "Triggering Google Apps Script to combine monthly data..."
+        
+        # Execute the Google Apps Script
+        response=$(curl -s -L -X POST "${GAS_WEB_APP_URL}" \
+          -d "token=${GAS_AUTH_TOKEN}" \
+          -H "Content-Type: application/x-www-form-urlencoded")
+        
+        echo "Script response: $response"
+        
+        # Parse the JSON response to get file information
+        file_id=$(echo "$response" | jq -r '.fileId // empty')
+        success=$(echo "$response" | jq -r '.success // false')
+        
+        if [ "$success" != "true" ] || [ -z "$file_id" ]; then
+          echo "❌ Failed to execute Google Apps Script"
+          echo "Response: $response"
+          exit 1
+        fi
+        
+        echo "✅ Google Apps Script executed successfully"
+        echo "File ID: $file_id"
+        
+        # Create data directory
+        mkdir -p data
+        
+        # Download the generated file
+        echo "Downloading combined monthly data from Google Drive..."
+        curl -L "https://drive.google.com/uc?export=download&id=${file_id}" \
+             -o data/combined-monthly-data.csv
+        
+        # Verify the file was downloaded
+        if [ -f "data/combined-monthly-data.csv" ]; then
+          echo "✅ Successfully downloaded combined-monthly-data.csv"
+          echo "File size: $(wc -c < data/combined-monthly-data.csv) bytes"
+          echo "Number of rows: $(wc -l < data/combined-monthly-data.csv)"
+        else
+          echo "❌ Failed to download the CSV file"
+          exit 1
+        fi
+    
