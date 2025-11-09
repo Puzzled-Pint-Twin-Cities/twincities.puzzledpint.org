@@ -62,7 +62,11 @@ Jekyll::Hooks.register :site, :post_read do |site|
     end
 
     site.data['results'].sort_by! do |r|
-        [r['solved'] ? 0 : 1, r['duration'] || Float::INFINITY, r['Start Time']]
+        [
+            r['solved'] ? 0 : 1, 
+            r['duration'] || Float::INFINITY, 
+            r['Start Time'] || ''
+        ]
     end
     
     # Add rank to each team
