@@ -32,19 +32,90 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
       - name: Setup Ruby
         uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4 # v1.207.0
         with:
           ruby-version: '3.3'
           bundler-cache: true
           cache-version: 1 # Increment this number if you need to re-download cached gems
+      
+      - name: Install jq for JSON parsing
+        run: sudo apt-get update && sudo apt-get install -y jq
+      
+      - name: Execute Google Apps Script and download data
+        env:
+          GAS_WEB_APP_URL: ${{ secrets.GAS_WEB_APP_URL }}
+          GAS_AUTH_TOKEN: ${{ secrets.GAS_AUTH_TOKEN }}
+        run: |
+          echo "Triggering Google Apps Script to combine monthly data..."
+          
+          # Execute the Google Apps Script
+          response=$(curl -s -L "${GAS_WEB_APP_URL}" \
+            -d "token=${GAS_AUTH_TOKEN}" \
+            -H "Content-Type: application/x-www-form-urlencoded")
+          
+          echo "Script response: $response"
+  
+          # Check if response is HTML (indicates an error or redirect issue)
+          if echo "$response" | grep -q "<!DOCTYPE\|<html"; then
+            echo "❌ Received HTML instead of JSON. This usually means:"
+            echo "   1. The web app URL is incorrect"
+            echo "   2. The script isn't deployed with 'Anyone' access"
+            echo "   3. There's an error in the script execution"
+            echo ""
+            echo "Full response (first 500 chars):"
+            echo "$response" | head -c 500
+            exit 1
+          fi
+          
+          # Parse the JSON response to get file information
+          file_id=$(echo "$response" | jq -r '.fileId // empty')
+          success=$(echo "$response" | jq -r '.success // false')
+          error=$(echo "$response" | jq -r '.error // empty')
+          
+          if [ "$success" != "true" ] || [ -z "$file_id" ]; then
+            echo "❌ Failed to execute Google Apps Script"
+            if [ -n "$error" ]; then
+              echo "Error: $error"
+            fi
+            echo "Full response: $response"
+            exit 1
+          fi
+          
+          echo "✅ Google Apps Script executed successfully"
+          echo "File ID: $file_id"
+          
+          # Create data directory
+          mkdir -p data
+          
+          # Download the generated file
+          echo "Downloading combined monthly data from Google Drive..."
+          curl -L "https://drive.google.com/uc?export=download&id=${file_id}" \
+               -o _data/combined-monthly-data.csv
+          
+          # Verify the file was downloaded
+          if [ -f "_data/combined-monthly-data.csv" ]; then
+            echo "✅ Successfully downloaded combined-monthly-data.csv"
+            echo "File size: $(wc -c < _data/combined-monthly-data.csv) bytes"
+            echo "Number of rows: $(wc -l < _data/combined-monthly-data.csv)"
+          else
+            echo "❌ Failed to download the CSV file"
+            exit 1
+          fi
+
+          # Overwrite the existing results.csv
+          mv _data/combined-monthly-data.csv _data/results.csv
+      
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
