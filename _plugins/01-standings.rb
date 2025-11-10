@@ -66,9 +66,9 @@ Jekyll::Hooks.register :site, :post_read do |site|
     
     site.data['results'].sort_by! do |r|
         [
-            r['solved'] ? 0 : 1, 
-            (r['duration'] || Float::INFINITY).to_f, 
-            (r['Start Time'] || '').to_s
+            r['solved'] ? 0 : 1,  # solved first (0 < 1)
+            r['duration'].nil? ? Float::INFINITY : r['duration'].to_f,
+            r['Start Time'].to_s == '' ? "\u{10FFFF}" : r['Start Time'].to_s  # empty strings last
         ]
     end
     
