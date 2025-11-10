@@ -13,6 +13,7 @@ layout: default
         <h4><a style="color: #76316e" href='https://puzzledpint.org/events/{{page.event.date|date:"%B-%Y" | downcase}}/'>{{page.event.theme}}</a></h4>
         <img style="border-radius: 1em" width="100%" src="/images/events/{{page.event.date}}.jpg">
         {% assign rows = site.data.results | where: "Date", page.event.date %}
+        {% assign rows = rows | where_exp: "item", "item['Team Name'] != 'GC'" %}
         {% if rows.size > 0 or page.event.sheetURL %}
         <table id=standings>
           <tr>
