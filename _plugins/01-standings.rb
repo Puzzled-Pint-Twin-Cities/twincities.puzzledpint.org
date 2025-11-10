@@ -6,6 +6,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
     def find_alias_or_slug(site, team_name, event = nil)
         tn = team_name.gsub('β', 'beta')
         tn = tn.gsub('²', 'squared')
+        tn = tn.gsub('/ʈ̬ˤʰ/', 'voiced-pharyngealized-aspirated-retroflex-plosive')
         slug = Jekyll::Utils.slugify(tn)
 
         # Find alias using first matching entry in 'aliases'
