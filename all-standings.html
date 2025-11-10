@@ -26,6 +26,7 @@ layout: default
             {% assign attendees = 0 %}
 
             {% assign month_results = site.data.results | where: "Date", row.date %}
+            {% assign today = site.time | date:"%Y-%m-%d" %}</p>
             {% for r in month_results %}
                 {% assign attendees = attendees | plus: r['Team Size'] %}
                 
@@ -41,10 +42,19 @@ layout: default
                 
                 {% if row.sheetURL %}
                 <td colspan=3 class=time><span style="min-width: 250px;display: inline-block;">LIVE</span></td>
+                
+                <!-- If the date is in the future, then show registration link -->
+                {% elsif lastDate >= today %}
+                <td colspan=2>
+                    <!-- TODO: Change to a simpler JS based countdown -->
+                    <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/en/#{{row.date}}T19:00:00@America%2FChicago" width="300" height="60" style="display: block; margin: 0px auto; border: 0px;"></iframe>
+                </td>
+                <td>
+                    <a class="button button-default" href='https://puzzledpint.org/events/{{ currentEvent.date | date:"%B-%Y" | downcase }}/' target="_blank" rel="noopener" role="button"><img class="icon" src="images/icons/generic-calendar.svg" alt="Registration Link for Next Puzzled Pint">RSVP</a>
+                </td>
                 {% elsif attendees == 0 %}
                 <td colspan=3>
-                    <!-- TODO: Change to a simpler JS based countdown -->
-                    <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/en/#{{row.date}}T18:30:00@Asia%2FKolkata" width="300" height="60" style="display: block; margin: 0px auto; border: 0px;"></iframe>
+                    No Attendees
                 </td>
                 {% else %}
 
