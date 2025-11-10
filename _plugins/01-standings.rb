@@ -79,7 +79,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
         date = event['date'].to_s
         site.data['event_mapping'][date] = event
 
-        event_results = site.data['results'].select {|r| r['Date'] == date}
+        event_results = site.data['results'].select {|r| r['Date'] == date and r['Team Name'] != 'GC'}
         event_results.each_with_index do |result, idx|
             slug = result['slug']
             site.data['teams'][slug]['results'].each do |r|
@@ -91,7 +91,11 @@ Jekyll::Hooks.register :site, :post_read do |site|
     # Award the has-alias badge
     site.data['aliases'].each do |row|
         slug = row['slug']
-        site.data['teams'][slug]['badges'] << 'has-alias'
+        if site.data['teams'][slug]
+            site.data['teams'][slug]['badges'] << 'has-alias'
+        else
+            Jekyll.logger.warn "Alias '#{row['name']}' references non-existent team slug '#{slug}'"
+        end
     end
 
     # Convert hash to array
