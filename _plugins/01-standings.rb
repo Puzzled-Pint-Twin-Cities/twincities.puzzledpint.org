@@ -48,7 +48,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
             site.data['teams'][row['slug']]['name'] = row['Team Name']
         end
 
-        unless row['End Time'].nil?
+        unless row['End Time'].nil? or row['Start Time'].nil?
             row['solved'] = true
             row['duration'] = (Time.parse(row['End Time']).to_i - Time.parse(row['Start Time']).to_i)
         end
