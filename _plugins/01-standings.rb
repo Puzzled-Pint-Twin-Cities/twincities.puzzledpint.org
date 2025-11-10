@@ -31,6 +31,9 @@ Jekyll::Hooks.register :site, :post_read do |site|
         row['duration'] = nil
         row['solved'] = false
         row['slug'] = find_alias_or_slug(site, row['Team Name'], row['Date'])
+        if row['slug'].nil?
+            Jekyll.logger.error "Found row with nil slug: #{row.inspect}"
+        end
         row['color_index'] = Digest::SHA1.hexdigest(row['slug']).to_i(16) % site.data['colors'].size
 
         site.data['teams'][row['slug']] ||= {
