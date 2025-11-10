@@ -51,7 +51,7 @@ layout: default
                     <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/en/#{{row.date}}T19:00:00@America%2FChicago" width="300" height="60" style="display: block; margin: 0px auto; border: 0px;"></iframe>
                 </td>
                 <td>
-                    <a class="button button-default" href='https://puzzledpint.org/events/{{ currentEvent.date | date:"%B-%Y" | downcase }}/' target="_blank" rel="noopener" role="button"><img class="icon" src="images/icons/generic-calendar.svg" alt="Registration Link for Next Puzzled Pint">RSVP</a>
+                    <a class="button button-default" href='https://puzzledpint.org/events/{{ currentEvent.date | date:"%B-%Y" | downcase }}/' target="_blank" rel="noopener" role="button"><img class="icon" src="/images/icons/generic-calendar.svg" alt="Registration Link for Next Puzzled Pint">RSVP</a>
                 </td>
                 {% elsif attendees == 0 %}
                 <td colspan=3>
