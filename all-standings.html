@@ -22,14 +22,15 @@ layout: default
             </tr>
             
             {% assign events =  site.data.events | reverse %}
+            {% assign today = site.time | date:"%Y-%m-%d" %}
+
             {% for row in events %}
             {% assign attendees = 0 %}
-
             {% assign month_results = site.data.results | where: "Date", row.date %}
-            {% assign today = site.time | date:"%Y-%m-%d" %}</p>
+            {% assign rowDate = row.date | date:"%Y-%m-%d" %}
+
             {% for r in month_results %}
                 {% assign attendees = attendees | plus: r['Team Size'] %}
-                
             {% endfor %}
             
             <tr>
@@ -44,7 +45,7 @@ layout: default
                 <td colspan=3 class=time><span style="min-width: 250px;display: inline-block;">LIVE</span></td>
                 
                 <!-- If the date is in the future, then show registration link -->
-                {% elsif row.date >= today %}
+                {% elsif rowDate >= today %}
                 <td colspan=2>
                     <!-- TODO: Change to a simpler JS based countdown -->
                     <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/en/#{{row.date}}T19:00:00@America%2FChicago" width="300" height="60" style="display: block; margin: 0px auto; border: 0px;"></iframe>
