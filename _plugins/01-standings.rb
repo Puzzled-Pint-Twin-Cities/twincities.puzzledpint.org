@@ -22,7 +22,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
     site.data['event_mapping'] = {}
 
     site.data['results'].each do |row|
-        next if row['Team Name'].empty?
+        next if row['Team Name'].empty? or row['Team Name'] == 'GC'
 
         if row['Date'].nil?
             Jekyll.logger.error "Found row with nil Date: #{row.inspect}"
