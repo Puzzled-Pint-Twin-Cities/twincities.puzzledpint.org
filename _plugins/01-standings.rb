@@ -61,11 +61,14 @@ Jekyll::Hooks.register :site, :post_read do |site|
         }
     end
 
+    # Add this debug line before the sort to see what you're working with
+    Jekyll.logger.info "Sample result: solved=#{site.data['results'].first['solved'].inspect}, duration=#{site.data['results'].first['duration'].inspect} (#{site.data['results'].first['duration'].class}), start=#{site.data['results'].first['Start Time'].inspect} (#{site.data['results'].first['Start Time'].class})"
+    
     site.data['results'].sort_by! do |r|
         [
             r['solved'] ? 0 : 1, 
-            r['duration'] || Float::INFINITY, 
-            r['Start Time'] || ''
+            (r['duration'] || Float::INFINITY).to_f, 
+            (r['Start Time'] || '').to_s
         ]
     end
     
