@@ -44,7 +44,7 @@ layout: default
                 <td colspan=3 class=time><span style="min-width: 250px;display: inline-block;">LIVE</span></td>
                 
                 <!-- If the date is in the future, then show registration link -->
-                {% elsif lastDate >= today %}
+                {% elsif row.date >= today %}
                 <td colspan=2>
                     <!-- TODO: Change to a simpler JS based countdown -->
                     <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/en/#{{row.date}}T19:00:00@America%2FChicago" width="300" height="60" style="display: block; margin: 0px auto; border: 0px;"></iframe>
