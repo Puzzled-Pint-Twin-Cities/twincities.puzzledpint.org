@@ -78,7 +78,7 @@ jobs:
           # Verify the file was downloaded
           if [ -f "_data/combined-monthly-data.csv" ]; then
             # Verify it's a CSV
-            if grep -q "<!DOCTYPE html>" _data/combined-monthly-data.csv; then
+            if grep -q "<!DOCTYPE\|<html" _data/combined-monthly-data.csv; then
               echo "❌ Error: Got HTML instead of CSV"
               cat _data/combined-monthly-data.csv
               exit 1
@@ -103,7 +103,7 @@ jobs:
           # Verify the file was downloaded
           if [ -f "_data/aliases-downloaded.csv" ]; then
             # Verify it's a CSV
-            if grep -q "<!DOCTYPE html>" _data/aliases-downloaded.csv; then
+            if grep -q "<!DOCTYPE\|<html" _data/aliases-downloaded.csv; then
               echo "❌ Error: Got HTML instead of CSV"
               cat _data/aliases-downloaded.csv
               exit 1
