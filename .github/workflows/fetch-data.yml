@@ -71,7 +71,7 @@ jobs:
           
           # Download the generated results file
           echo "Downloading combined monthly data from Google Drive..."
-          curl -L "https://drive.google.com/uc?export=download&id=${file_id}" \
+          curl -L "https://drive.usercontent.google.com/download?id=${file_id}&export=download&confirm=t" \
                -o _data/combined-monthly-data.csv
           
           # Verify the file was downloaded
@@ -89,7 +89,7 @@ jobs:
 
           # Download the generated aliases file
           echo "Downloading combined monthly data from Google Drive..."
-          curl -L "https://drive.google.com/uc?export=download&id=${file_id}" \
+          curl -L "https://drive.usercontent.google.com/download?id=${file_id}&export=download&confirm=t" \
                -o _data/aliases-downloaded.csv
           
           # Verify the file was downloaded
