@@ -53,7 +53,7 @@ jobs:
           success=$(echo "$response" | jq -r '.success // false')
           error=$(echo "$response" | jq -r '.error // empty')
           
-          if [ "$success" != "true" ] || [ -z "$file_id" ]; then
+          if [ "$success" != "true" ] || [ -z "$results_file_id" ]; then
             echo "❌ Failed to execute Google Apps Script"
             if [ -n "$error" ]; then
               echo "Error: $error"
