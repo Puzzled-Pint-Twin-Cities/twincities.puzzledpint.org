@@ -48,7 +48,8 @@ jobs:
           fi
           
           # Parse the JSON response to get file information
-          file_id=$(echo "$response" | jq -r '.fileId // empty')
+          results_file_id=$(echo "$response" | jq -r '.monthlyData.fileId // empty')
+          aliases_file_id=$(echo "$response" | jq -r '.aliasesData.fileId // empty')
           success=$(echo "$response" | jq -r '.success // false')
           error=$(echo "$response" | jq -r '.error // empty')
           
@@ -62,12 +63,13 @@ jobs:
           fi
           
           echo "✅ Google Apps Script executed successfully"
-          echo "File ID: $file_id"
+          echo "Results File ID: $results_file_id"
+          echo "Aliases File ID: $aliases_file_id"
           
           # Create data directory if it doesn't exist
           mkdir -p _data
           
-          # Download the generated file
+          # Download the generated results file
           echo "Downloading combined monthly data from Google Drive..."
           curl -L "https://drive.google.com/uc?export=download&id=${file_id}" \
                -o _data/combined-monthly-data.csv
@@ -78,13 +80,31 @@ jobs:
             echo "File size: $(wc -c < _data/combined-monthly-data.csv) bytes"
             echo "Number of rows: $(wc -l < _data/combined-monthly-data.csv)"
           else
-            echo "❌ Failed to download the CSV file"
+            echo "❌ Failed to download the Results CSV file"
             exit 1
           fi
 
           # Overwrite the existing results.csv
           mv _data/combined-monthly-data.csv _data/results.csv
-      
+
+          # Download the generated aliases file
+          echo "Downloading combined monthly data from Google Drive..."
+          curl -L "https://drive.google.com/uc?export=download&id=${file_id}" \
+               -o _data/aliases-downloaded.csv
+          
+          # Verify the file was downloaded
+          if [ -f "_data/aliases-downloaded.csv" ]; then
+            echo "✅ Successfully downloaded aliases.csv"
+            echo "File size: $(wc -c < _data/aliases-downloaded.csv) bytes"
+            echo "Number of rows: $(wc -l < _data/aliases-downloaded.csv)"
+          else
+            echo "❌ Failed to download the Aliases CSV file"
+            exit 1
+          fi
+
+          # Overwrite the existing results.csv
+          mv _data/aliases-downloaded.csv _data/aliases.csv
+
       - name: Commit and push data changes
         run: |
           git config --global user.name "github-actions[bot]"
@@ -92,6 +112,7 @@ jobs:
           
           # Add the data file
           git add _data/results.csv
+          git add _data/aliases.csv
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then
