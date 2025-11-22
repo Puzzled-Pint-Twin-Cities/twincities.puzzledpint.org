@@ -15,9 +15,20 @@ jobs:
   fetch-data:
     runs-on: ubuntu-latest
     steps:
+      # this Checkout step is configured to use the PAT_TOKEN saved in this repo's secrets
+      # you can create a fine-grained personal access token:
+      # 1. Settings → Developer settings → Personal access tokens → Fine-grained tokens
+      # 2. Select Puzzled-Pint-Twin-Cities as the resource owner
+      # 3. Select this repo
+      # Give "Contents" permission with Read and Write access
+      # This will expire each year!
+      # If you can't figure this out, just delete the "with:" and "token:" lines
+      # It won't trigger the build automatically anymore but it should at least run.
       - name: Checkout
         uses: actions/checkout@v4
-      
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          
       - name: Install jq for JSON parsing
         run: sudo apt-get update && sudo apt-get install -y jq
       
