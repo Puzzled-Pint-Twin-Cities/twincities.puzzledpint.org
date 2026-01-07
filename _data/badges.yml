@@ -37,6 +37,10 @@
   name: Sushi
   description: Attended a food-themed puzzle
   emoji: 🍣
+- id: anniversary-10
+  name: 10th Anniversary
+  description: Attended the 10th Anniversary puzzle (July 2020)
+  emoji: 🥳
 - id: anniversary-15
   name: 15th Anniversary
   description: Attended the 15th Anniversary puzzle (July 2025)
@@ -45,3 +49,16 @@
   name: 1080p Puzzler
   description: Attended a Movie/TV themed puzzle
   emoji: 🎦
+- id: book
+  name: Literally Puzzled
+  description: Attended a book/literature themed puzzle
+  emoji: 📚
+- id: podcast
+  name: Listen Up!
+  description: Attended a podcast-themed puzzle
+  emoji: 🎧
+- id: music
+  name: Philharmonic Puzzler
+  description: Attended a music-themed puzzle
+  emoji: 🎵
+  
