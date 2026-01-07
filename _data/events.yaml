@@ -5,7 +5,8 @@
 
 - date: 2016-08-09
   theme: "Star Trek"
-  badges: []
+  badges:
+    - screen
 
 - date: 2016-09-13
   theme: Rats
@@ -25,7 +26,8 @@
 
 - date: 2017-01-10
   theme: Hamilton
-  badges: []
+  badges:
+    - music
 
 - date: 2017-02-14
   theme: "Valentine's Day"
@@ -33,7 +35,8 @@
 
 - date: 2017-03-14
   theme: "Alice in Wonderland"
-  badges: []
+  badges:
+    - book
 
 - date: 2017-04-11
   theme: "Playing Cards"
@@ -49,7 +52,8 @@
 
 - date: 2017-07-11
   theme: "Game of Thrones"
-  badges: []
+  badges:
+    - book
 
 - date: 2017-08-08
   theme: Destiny
@@ -61,11 +65,13 @@
 
 - date: 2017-10-10
   theme: Dracula
-  badges: []
+  badges:
+    - book
 
 - date: 2017-11-14
   theme: "Charlie and the Chocolate Factory"
-  badges: []
+  badges:
+    - book
 
 - date: 2017-12-12
   theme: "Secret Messages"
@@ -73,11 +79,13 @@
 
 - date: 2018-01-09
   theme: "Stranger Things"
-  badges: []
+  badges:
+    - screen
 
 - date: 2018-02-13
   theme: Stargate
-  badges: []
+  badges:
+    - screen
 
 - date: 2018-03-13
   theme: "Harry Potter"
@@ -101,11 +109,13 @@
 
 - date: 2018-08-14
   theme: Pokémon
-  badges: []
+  badges:
+    - screen
 
 - date: 2018-09-11
   theme: Labyrinth
-  badges: []
+  badges:
+    - screen
 
 - date: 2018-10-09
   theme: "Zoo Theft"
@@ -117,7 +127,8 @@
 
 - date: 2018-12-11
   theme: "The Nightmare Before Christmas"
-  badges: []
+  badges:
+    - screen
 
 - date: 2019-01-08
   theme: Friends
@@ -129,7 +140,8 @@
 
 - date: 2019-03-12
   theme: "The Dark Crystal"
-  badges: []
+  badges:
+    - screen
 
 - date: 2019-04-09
   theme: "Head to Head"
@@ -141,7 +153,8 @@
 
 - date: 2019-06-11
   theme: "The Crystal Maze"
-  badges: []
+  badges:
+    - screen
 
 - date: 2019-07-09
   theme: "The Space Age"
@@ -149,7 +162,8 @@
 
 - date: 2019-08-13
   theme: "The Muppet Show"
-  badges: []
+  badges:
+    - screen
 
 - date: 2019-09-10
   theme: "Dimensional Diversions"
@@ -161,11 +175,14 @@
 
 - date: 2019-11-12
   theme: Music
-  badges: []
+  badges:
+    - music
 
 - date: 2019-12-10
   theme: "Die Hard"
-  badges: []
+  badges:
+    - screen
+    - christmas
 
 - date: 2020-01-14
   theme: "Neko Atsume"
@@ -185,7 +202,8 @@
 
 - date: 2020-05-12
   theme: "Dr. Seuss"
-  badges: []
+  badges:
+    - book
 
 - date: 2020-06-09
   theme: "Modern Board Games"
@@ -193,15 +211,18 @@
 
 - date: 2020-07-14
   theme: "Puzzled Pint's 10th Anniversary"
-  badges: []
+  badges:
+    - anniversary-10
 
 - date: 2020-08-11
   theme: "The Great British Baking Show"
-  badges: []
+  badges:
+    - screen
 
 - date: 2020-09-08
   theme: "Schoolhouse Rock"
-  badges: []
+  badges:
+    - screen
 
 - date: 2020-10-13
   theme: Seasons
@@ -209,11 +230,13 @@
 
 - date: 2020-11-10
   theme: Scooby-Doo
-  badges: []
+  badges:
+    - screen
 
 - date: 2020-12-08
   theme: "The Grinch"
-  badges: []
+  badges:
+    - book
 
 - date: 2021-01-12
   theme: PuzzFeed
@@ -221,8 +244,9 @@
 
 - date: 2021-02-09
   theme: "A Series of Unfortunate Events"
-  badges: []
-
+  badges:
+    - book
+    
 - date: 2021-03-09
   theme: "Life in 2020"
   badges: []
@@ -233,7 +257,8 @@
 
 - date: 2021-05-11
   theme: "Steven Universe"
-  badges: []
+  badges:
+    - screen
 
 - date: 2021-06-08
   theme: Chess
@@ -241,7 +266,8 @@
 
 - date: 2021-07-13
   theme: "Agatha Christie's Poirot"
-  badges: []
+  badges:
+    - book
 
 - date: 2021-08-10
   theme: Vikings
@@ -249,7 +275,8 @@
 
 - date: 2021-09-14
   theme: Tenet
-  badges: []
+  badges:
+    - screen
 
 - date: 2021-10-12
   theme: Condiments
@@ -261,11 +288,13 @@
 
 - date: 2021-12-14
   theme: "Gilligan's Island"
-  badges: []
+  badges:
+    - screen
 
 - date: 2022-01-11
   theme: "Avatar: The Last Airbender"
-  badges: []
+  badges:
+    - screen
 
 - date: 2022-02-08
   theme: Spiritfarer
@@ -277,7 +306,8 @@
 
 - date: 2022-04-12
   theme: Miyazaki
-  badges: []
+  badges:
+    - screen
 
 - date: 2022-05-10
   theme: Dogs
@@ -285,15 +315,18 @@
 
 - date: 2022-06-14
   theme: "Jurassic Park"
-  badges: []
+  badges:
+    - screen
 
 - date: 2022-07-12
   theme: "Squid Game"
-  badges: []
+  badges:
+    - screen
 
 - date: 2022-08-09
   theme: "The Expanse"
-  badges: []
+  badges:
+    - book
 
 - date: 2022-09-13
   theme: "7 Deadly Sins"
@@ -313,7 +346,8 @@
 
 - date: 2023-01-10
   theme: "Five Nights at Freddy's"
-  badges: []
+  badges:
+    - screen
 
 - date: 2023-02-14
   theme: Robots
@@ -321,7 +355,8 @@
 
 - date: 2023-03-14
   theme: "Not Another D&D Podcast"
-  badges: []
+  badges:
+    - podcast
 
 - date: 2023-04-11
   theme: Codes
@@ -329,7 +364,8 @@
 
 - date: 2023-05-09
   theme: "Taco Tuesday"
-  badges: []
+  badges:
+    - sushi
 
 - date: 2023-06-13
   theme: "Liquid Measures"
@@ -337,7 +373,8 @@
 
 - date: 2023-07-11
   theme: "Christmas in July"
-  badges: []
+  badges:
+    - christmas
 
 - date: 2023-08-08
   theme: "Questionable Letters"
@@ -345,7 +382,8 @@
 
 - date: 2023-09-12
   theme: "Quantum Physics"
-  badges: []
+  badges:
+    - physicist
 
 - date: 2023-10-10
   theme: "Nobel Prizes"
@@ -357,7 +395,8 @@
 
 - date: 2023-12-12
   theme: "Over the Garden Wall"
-  badges: []
+  badges:
+    - screen
 
 - date: 2024-01-09
   theme: "Animal Casino"
@@ -369,19 +408,23 @@
 
 - date: 2024-03-12
   theme: Mathematics
-  badges: []
+  badges:
+    - pi
 
 - date: 2024-04-09
   theme: "The Magnus Archives"
-  badges: []
-
+  badges:
+    - podcast
+    
 - date: 2024-05-14
   theme: "Bart Simpson"
-  badges: []
+  badges:
+    - screen
 
 - date: 2024-06-11
   theme: Sushi
-  badges: []
+  badges:
+    - sushi
 
 - date: 2024-07-09
   theme: "Road Trip"
@@ -389,11 +432,13 @@
 
 - date: 2024-08-13
   theme: "The Phantom Tollbooth"
-  badges: []
+  badges:
+    - book
 
 - date: 2024-09-10
   theme: "Choose Your Own Adventure"
-  badges: []
+  badges:
+    - book
 
 - date: 2024-10-08
   theme: "Shopping Spree"
@@ -430,7 +475,8 @@
 
 - date: 2025-06-10
   theme: "Game Show"
-  badges: []
+  badges: 
+    - screen
 
 - date: 2025-07-08
   theme: "15th Birthday"
@@ -439,7 +485,8 @@
 
 - date: 2025-08-12
   theme: "Orville Peck"
-  badges: []
+  badges:
+    - music
 
 - date: 2025-09-09
   theme: Rome
@@ -455,4 +502,18 @@
 
 - date: 2025-12-09
   theme: The Legend of Zelda
+  badges: []
+
+- date: 2026-01-13
+  theme: Grateful Dead
+  badges:
+    - book
+
+- date: 2026-02-10
+  theme: Murder Mystery
+  badges:
+    - book
+
+- date: 2026-03-10
+  theme: Escape Room
   badges: []
