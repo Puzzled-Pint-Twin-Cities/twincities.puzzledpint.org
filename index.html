@@ -9,12 +9,16 @@ title: Puzzled Pint Twin Cities
         <h1 role="heading">{{site.title}}</h1>
         <p>{{site.description}}</p>
 
-        {% assign currentEvent = site.data.events.last %}
-
-        <p>{% assign lastDate = currentEvent.date | date:"%Y-%m-%d" %} {% assign today = site.time | date:"%Y-%m-%d" %}</p>
+        {% assign today = site.time | date:"%Y-%m-%d" %}
+        {% assign upcomingEvents = site.data.events | where_exp: "event", "event.date >= today" | sort: "date" %}
+        {% if upcomingEvents.size > 0 %}
+          {% assign nextEvent = upcomingEvents.first %}
+          {% assign nextDate = nextEvent.date | date:"%Y-%m-%d" %}
+        {% endif %}
+        
         <!-- If the date is in the future, then show registration link -->
-        {% if lastDate >= today %}
-        <a class="button button-default" href='https://puzzledpint.org/events/{{ currentEvent.date | date:"%B-%Y" | downcase }}/' target="_blank" rel="noopener" role="button"><img class="icon" src="/images/icons/generic-calendar.svg" alt="Registration Link for Next Puzzled Pint">RSVP for {{ currentEvent.date | date:"%B %Y"}}</a><br>
+        {% if nextEvent %}
+        <a class="button button-default" href='https://puzzledpint.org/events/{{ nextEvent.date | date:"%B-%Y" | downcase }}/' target="_blank" rel="noopener" role="button"><img class="icon" src="/images/icons/generic-calendar.svg" alt="Registration Link for Next Puzzled Pint">RSVP for {{ nextEvent.date | date:"%B %Y"}}</a><br>
         {% endif %}
 
         <!-- TODO: Need better label -->
@@ -22,8 +26,8 @@ title: Puzzled Pint Twin Cities
           🏆 All Months Leaderboard
         </a>
         
-        {% if lastDate==today %}
-        <a class="button button-default" href='/standings/{{ currentEvent.date | date: "%Y-%m" }}/' role="button">🏅 Leaderboard {{currentEvent.date | date:"%B %Y"}}</a><br>
+        {% if nextDate==today %}
+        <a class="button button-default" href='/standings/{{ nextEvent.date | date: "%Y-%m" }}/' role="button">🏅 Leaderboard {{nextEvent.date | date:"%B %Y"}}</a><br>
         {% endif %}
 
         <a class="button button-default" href='/teams/' role="button">📊 Teams</a><br>
