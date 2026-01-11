@@ -10,12 +10,15 @@ title: Puzzled Pint Twin Cities
         <p>{{site.description}}</p>
 
         {% assign today = site.time | date:"%Y-%m-%d" %}
-        {% assign upcomingEvents = site.data.events | where_exp: "event", "event.date | date:'%Y-%m-%d'>= today" %}
-        {% assign upcomingEvents = upcomingEvents | sort: "date" %}
-        {% if upcomingEvents.size > 0 %}
-          {% assign nextEvent = upcomingEvents.first %}
-          {% assign nextDate = nextEvent.date | date:"%Y-%m-%d" %}
-        {% endif %}
+        {% assign sortedEvents = site.data.events | sort: "date" %}
+        {% assign nextEvent = null %}
+        
+        {% for event in sortedEvents %}
+          {% assign eventDate = event.date | date:"%Y-%m-%d" %}
+          {% if eventDate >= today and nextEvent == null %}
+            {% assign nextEvent = event %}
+          {% endif %}
+        {% endfor %}
         
         <!-- If the date is in the future, then show registration link -->
         {% if nextEvent %}
